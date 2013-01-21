@@ -21,7 +21,7 @@ public class Solution {
     
    public int maxSum(TreeNode root, int globalMax){  
         if(root == null)  
-            return 0;  
+            return -999;  
   
     int localMax = root.val;
   
