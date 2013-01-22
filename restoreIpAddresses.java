@@ -4,6 +4,9 @@ public class Solution {
         // DO NOT write main() function
         ArrayList<String> addresses = new ArrayList<String>();
         
+        
+        if(s.length() > 12) { return addresses; }
+        
         findIP(s,"",addresses, 0);
         
         return addresses;
@@ -60,6 +63,8 @@ public class Solution {
     
     public boolean isValidIP(String ip)
     {
+        if((ip.length() > 1) && (ip.charAt(0) == '0')) { return false; }
+        
         int toCheck = Integer.parseInt(ip);
         
         return (toCheck >= 0 && toCheck <= 255);
