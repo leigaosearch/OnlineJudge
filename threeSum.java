@@ -2,41 +2,50 @@ public class Solution {
     public ArrayList<ArrayList<Integer>> threeSum(int[] num) {
         // Start typing your Java solution below
         // DO NOT write main() function
-        int c;
+        int j;
+        int k;
+        int sum;
+        ArrayList<ArrayList<Integer>> matchingSums = new ArrayList<ArrayList<Integer>>();
+        ArrayList<Integer> addSum;
         
-        ArrayList<ArrayList<Integer>> triplets = new ArrayList<ArrayList<Integer>>();
-        
-        if(num.length < 3) { return triplets; }
+        if(num.length < 3) { return matchingSums; }
         
         Arrays.sort(num);
         
-        for(int a=0; a<num.length-2; a++)
+        for(int i=0; i<num.length; i++)
         {
-            for(int b=a+1; b<num.length-1; b++)
+            
+            if(num[i] > 0)
             {
-                c = num.length-1;
+                break;
+            }
+            
+            j=i+1;
+            k=num.length-1;
+            
+            while(j < k)
+            {
+                sum = num[i]+num[j]+num[k];
                 
-                while(((num[a] + num[b] + num[c]) > 0) && (c > b))
-                {
-                    c--;
-                }
-                
-                if(((num[a] + num[b] + num[c]) == 0) && (c > b))
-                {
-                    ArrayList<Integer> toAdd = new ArrayList<Integer>();
-                    toAdd.add(num[a]);
-                    toAdd.add(num[b]);
-                    toAdd.add(num[c]);
+                if(sum == 0) 
+                { //add 
+                    addSum = new ArrayList<Integer>();
+                    addSum.add(num[i]);
+                    addSum.add(num[j]);
+                    addSum.add(num[k]);
                     
-                    if(!triplets.contains(toAdd))
+                    if(!matchingSums.contains(addSum))
                     {
-                    triplets.add(toAdd);
+                        matchingSums.add(addSum);
                     }
-                    //add
-                    c--;
+                    j++;
+                    k--;
                 }
+                else if(sum > 0) { k--; }
+                else { j++; }
             }
         }
-        return triplets;
+        
+        return matchingSums;
     }
 }
